@@ -1,0 +1,218 @@
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 50%;
+        margin: 0px auto;
+        padding-top: 80px;
+    }
+
+    .container .title {
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 50px;
+    }
+
+    canvas {
+        width: 400px;
+    }img {
+        max-width: 20%;
+        height: auto;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="title">Thống kê </div>
+    <canvas id="canvas"></canvas>
+</div>
+
+<div class="mt-4"><h4>Top Applications</h4></div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th width="125">Name</th>
+            <th width="150">Image</th>
+            <th width="100">Category</th>
+            <th>Overall Rating</th>
+            <th>Total Downloads</th>
+            <th>Uploaded by</th>
+            <th style="display:none">Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="filesTable">
+        {{#each topApps}}
+        <tr >
+            <td >
+                {{this.idApp}}
+            </td>
+            <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{this.description}}">
+                {{this.nameApp}}
+            </td>
+            <td>
+               <img loading="lazy" src="/images/imgApps/{{modifyImg this.image}}" class="img-fluid float-start rounded mx-auto d-block" alt="..." width="75" height="auto">
+            </td>
+            <td >
+                {{this.category}}
+                
+            </td>
+            <td>
+                {{this.rating}}
+            </td>
+             <td>
+                {{this.nDownload}}
+            </td>
+            <td>
+                {{this.uploadBy}}
+            </td>
+            <td style="display:none">
+                {{this.description}}
+            </td>
+            <td>
+                {{this.status}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div class="mt-4"><h4>Top Games</h4></div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th width="125">Name</th>
+            <th width="150">Image</th>
+            <th width="100">Category</th>
+            <th>Overall Rating</th>
+            <th>Total Downloads</th>
+            <th>Uploaded by</th>
+            <th style="display:none">Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each topGames}}
+        <tr >
+            <td >
+                {{this.idApp}}
+            </td>
+            <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{this.description}}">
+                {{this.nameApp}}
+            </td>
+            <td>
+               <img loading="lazy" src="/images/imgApps/{{modifyImg this.image}}" class="img-fluid float-start rounded mx-auto d-block" alt="..." width="75" height="auto">
+            </td>
+            <td >
+                {{this.category}}
+                
+            </td>
+            <td>
+                {{this.rating}}
+            </td>
+             <td>
+                {{this.nDownload}}
+            </td>
+            <td>
+                {{this.uploadBy}}
+            </td>
+            <td style="display:none">
+                {{this.description}}
+            </td>
+            <td>
+                {{this.status}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div class="mt-4"><h4>Top Books</h4></div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th width="125">Name</th>
+            <th width="150">Image</th>
+            <th width="100">Category</th>
+            <th>Overall Rating</th>
+            <th>Total Downloads</th>
+            <th>Uploaded by</th>
+            <th style="display:none">Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody >
+        {{#each topBooks}}
+        <tr >
+            <td >
+                {{this.idApp}}
+            </td>
+            <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{this.description}}">
+                {{this.nameApp}}
+            </td>
+            <td>
+               <img loading="lazy" src="/images/imgApps/{{modifyImg this.image}}" class="img-fluid float-start rounded mx-auto d-block" alt="..." width="75" height="auto">
+            </td>
+            <td >
+                {{this.category}}
+                
+            </td>
+            <td>
+                {{this.rating}}
+            </td>
+             <td>
+                {{this.nDownload}}
+            </td>
+            <td>
+                {{this.uploadBy}}
+            </td>
+            <td style="display:none">
+                {{this.description}}
+            </td>
+            <td>
+                {{this.status}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<div class="mt-4"><h4>Top uploader</h4></div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody >
+        {{#each topUpload}}
+        <tr >
+            <td >
+                {{this._id}}
+            </td>
+            <td >
+                {{this.total}}
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</div>
+</div>
+
+
+<script src="/js/admin/admin_home.js"></script>

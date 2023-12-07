@@ -1,0 +1,256 @@
+<div>
+    <button data-bs-toggle="modal" data-bs-target="#uploadModal" type="button" class="btn btn-primary mb-3">UPLOAD AN
+        APP</button>
+</div>
+<div class="table-wrap">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th width="125">Name</th>
+                <th width="150">Image</th>
+                <th width="100">Category</th>
+                <th>Overall Rating</th>
+                <th>Total Downloads</th>
+                <th>Uploaded by</th>
+                <th style="display:none">Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="filesTable">
+            {{#each apps}}
+            <tr>
+                <td>
+                    <a href="appControl/comments/{{this.idApp}}">{{this.idApp}}</a>
+                </td>
+                <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{this.description}}">
+                    {{this.nameApp}}
+                </td>
+                <td>
+                    <img loading="lazy" src="/images/imgApps/{{modifyImg this.image}}"
+                        class="img-fluid float-start rounded mx-auto d-block" alt="..." width="75" height="auto">
+                </td>
+                <td>
+                    {{this.category}}
+
+                </td>
+                <td>
+                    {{this.rating}}
+                </td>
+                <td>
+                    {{this.nDownload}}
+                </td>
+                <td>
+                    {{this.uploadBy}}
+                </td>
+                <td style="display:none">
+                    {{this.description}}
+                </td>
+                <td>
+                    {{this.status}}
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <button aria-expanded="false" data-bs-toggle="dropdown" id="edit" type="button" class="btn "><i
+                                class="fas fa-edit"></i></button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a id="editDetail" class="dropdown-item">Edit details</a></li>
+                            <li><a id="editImage" class="dropdown-item">Edit image</a></li>
+                            <li><a id="editFile" class="dropdown-item">Edit file</a></li>
+                        </ul>
+                    </div>
+
+                    <button id="block" type="button" class="btn">
+                        {{{status this.status}}}
+                    </button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="uploadModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="uploadForm">
+                <div id="uploadBody" class="modal-body">
+
+                    <div input type="text" hidden name="userName" id="userName"></div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="fileName">Name</label>
+                        <input type="text" placeholder="Name" class="form-control" id="fileName" name="nameApp" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="fileImage">Image</label>
+                        <input type="file" placeholder="" class="form-control" id="fileImage" name="image" />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="file">File</label>
+                        <input type="file" placeholder="" class="form-control" id="file" name="file" />
+                    </div>
+
+
+                    <select name="category" id="category" class="form-select mb-3" aria-label="Default select example">
+                        <option value="none">Category</option>
+                        <option value="G">Game</option>
+                        <option value="A">Application</option>
+                        <option value="B">Book</option>
+                    </select>
+
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="fileDescription">Description</label>
+                        <textarea name="description" rows="5" id="fileDescription" class="form-control"
+                            placeholder="Description....."></textarea>
+                    </div>
+                    <div class="form-group container-progress" style="display:none">
+                        <div class="progress" style="height:5px">
+                            <div class="progress-bar bg-success" style="width:45%;height:10px"></div>
+                        </div>
+                    </div>
+
+
+                    <div id="alert" class="hidden mt-3" style="color:#DC0000"></div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button id="uploadRequestButton" type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="uploadForm">
+                <div id="uploadBody" class="modal-body">
+
+                    <input type="text" hidden name="idApp" id="idApp">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="fileName">Name</label>
+                        <input type="text" placeholder="Name" class="form-control" id="fileName" name="nameApp" />
+                    </div>
+
+                    <select name="category" id="category" class="form-select mb-3" aria-label="Default select example">
+                        <option value="none">Category</option>
+                        <option value="G">Game</option>
+                        <option value="A">Application</option>
+                        <option value="B">Book</option>
+                    </select>
+
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="fileDescription">Description</label>
+                        <textarea name="description" rows="5" id="fileDescription" class="form-control"
+                            placeholder="Description....."></textarea>
+                    </div>
+
+                    <div class="form-group container-progress" style="display:none">
+                        <div class="progress" style="height:5px">
+                            <div class="progress-bar bg-success" style="width:45%;height:10px"></div>
+                        </div>
+                    </div>
+
+
+                    <div id="alert" class="hidden mt-3" style="color:#DC0000"></div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button onclick="saveChanges()" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imageModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Change Image</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="uploadForm">
+                <div id="uploadBody" class="modal-body">
+
+                    <input type="text" hidden name="idApp" id="idApp">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="fileImage">Image</label>
+                        <input type="file" placeholder="" class="form-control" id="fileImage" name="image" />
+                    </div>
+
+                    <div id="alert" class="hidden mt-3" style="color:#DC0000"></div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button id="submitBtn" onclick="saveChangeImage()" type="button" class="btn btn-primary">Save
+                        changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="fileModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Change File</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="uploadForm">
+                <div id="uploadBody" class="modal-body">
+
+                    <input type="text" hidden name="idApp" id="idApp">
+                    <input type="text" hidden name="category" id="category">
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="file">File</label>
+                        <input type="file" placeholder="" class="form-control" id="file" name="file" />
+                    </div>
+
+                    <div id="alert" class="hidden mt-3" style="color:#DC0000"></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="submitBtn" onclick="saveChangeFile()" type="button" class="btn btn-primary">Save
+                        changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+
+<script src="/admin/js/appControl.js"></script>

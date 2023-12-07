@@ -1,0 +1,186 @@
+<div class="section-container p-2 p-xl-4">
+
+    <h4 class="fs-6 fw-bolder my-3 mt-2 mb-4">Top ranking </h4>
+
+    <div class="row m-0">
+
+        <div class="row top-ranking">
+            {{#each topRankings}}
+            <div class="col-md-4 mb-3">
+                <div class="app-cover p-2 shadow-md bg-white">
+                    <a href="/app/{{this._id}}">
+                        <div class="row">
+                            <div class="img-cover pe-0 col-3">
+                                <img class="rounded" src="images/imgApps/{{this.image}}" alt="">
+                            </div>
+                            <div class="det mt-2 col-9">
+                                <h5 class="mb-0 fs-6">{{this.nameApp}}</h5>
+                                {{#compare this.category "A" operator="==="}}
+                                <span class="fs-8">Applications</span>
+                                {{else compare this.category "G" operator="==="}}
+                                <span class="fs-8">Games</span>
+                                {{else}}
+                                <span class="fs-8">Books</span>
+                                {{/compare}}
+                                <ul class="row">
+                                    <li class="col-8 ratfac">
+                                        {{#compare this.rating 1 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 2 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 3 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 4 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        {{/compare}}
+                                    </li>
+                                    <li class="col-4"><span class="text-success float-end">Free</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <h4 class="fs-6 fw-bolder my-4">Mobile Apps </h4>
+        <div class="mobile-apps"></div>
+        <div class="row mt-2">
+            {{#each common}}
+            <div class="col-md-3 mb-3">
+                <a href="app/{{this._id}}">
+                    <div class="app-cover p-2 shadow-md bg-white">
+                        <div class="img-cover"> <img class="rounded6" src="images/imgApps/{{this.image}}" alt="">
+                        </div>
+                        <div class="det mt-2">
+                            <h5 class="mb-1 fs-6">{{this.nameApp}}</h5>
+                            <ul class="row">
+                                <li class="col-8 ratfac">
+                                    {{#compare this.rating 1 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else compare this.rating 2 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else compare this.rating 3 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else compare this.rating 4 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    {{/compare}}
+                                </li>
+                                <li class="col-4"><span class="text-success float-end">Free</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+
+        <h4 class="fs-6 fw-bolder my-4 mb-3">New & updated</h4>
+        {{#each newUpdate}}
+        <div class="col-md-4 mb-3">
+            <a href="app/{{this._id}}">
+                <div class="app-cover p-2 shadow-md bg-white">
+                    <div class="row">
+                        <div class="img-cover pe-0 col-4"> <img class="rounded" src="images/imgApps/{{this.image}}"
+                                alt=""></div>
+                        <div class="det mt-2 col-8">
+                            <h5 class="mb-0 fs-6" style="font-weight: inherit;">{{this.nameApp}}</h5>
+                            {{#compare this.category "A" operator="==="}}
+                            <span class="fs-8">Applications</span>
+                            {{else compare this.category "G" operator="==="}}
+                            <span class="fs-8">Games</span>
+                            {{else}}
+                            <span class="fs-8">Books</span>
+                            {{/compare}}
+                            <ul class="row my-2">
+                                <li class="col-8 ratfac">
+                                    {{#compare this.rating 1 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else compare this.rating 2 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else compare this.rating 3 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else compare this.rating 4 operator="==="}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    {{else}}
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    <i class="bi text-warning bi-star-fill"></i>
+                                    {{/compare}}
+                                </li>
+                                <li class="col-4"><span class="text-success fs-8 float-end">Featured</span></li>
+                            </ul>
+                            <b class="fs-8">Free</b>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+
+
+    </div>
+</div>

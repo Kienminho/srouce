@@ -1,0 +1,197 @@
+<link rel="stylesheet prefetch" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" />
+<link rel="stylesheet" href="/css/modalMessage.css">
+<div class="section-container p-2 p-xl-4">
+    <div class="row">
+        <div class="col-md-8 ps-4 ps-lg-3">
+            <div class="row bg-white shadow-sm">
+                <div class="col-md-4 p-3">
+                    <img class="w-100" src="/images/imgApps/{{app.image}}" alt="">
+                </div>
+                <div class="col-md-8 p-2">
+                    <h4 class="fw-semi fs-4 mb-3">{{app.nameApp}}</h4>
+
+                    <button id="download-button" class="btn btn-primary w-45 fw-semi fs-8 py-2 me-3"><a
+                            class="text-white" href="{{app.source}}">Download</a>
+                    </button>
+                    <button class="btn border ps-3 w-45 fw-semi fs-8 py-2 btn-outlie-primary"> <a
+                            class="add-wishList text-black" href="#">Add to Wish List</a>
+                    </button>
+
+
+
+                    <div class="row pt-4">
+                        <div class="col-md-4 col-6 text-center">
+                            <b>{{app.rating}} <i class="bi bi-star-fill"></i></b>
+                            <p>11.6k Reviews</p>
+                        </div>
+                        <div class="col-md-4 col-6 text-center">
+                            <b>{{app.nDownload}}+</b>
+                            <p>Downloads</p>
+                        </div>
+                    </div>
+
+                    <div class="auth pt-4">
+                        <h6 class="text-primary fw-semi mb-0">{{app.uploadBy}}</h6>
+                        <p class="fs-8">Upload by</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about row p-2 py-3 bg-white mt-4 shadow-sm">
+                <h4 class="fw-semi fs-5">Mô tả </h4>
+                <p class="fs-5 text-justify">{{app.description}}</p>
+            </div>
+            <div class="about row p-2 py-3 bg-white mt-4 shadow-sm">
+                <h4 class="fw-semi fs-5">Đánh giá</h4>
+                <form action="" id="form-feedback">
+                    <input class="id-app" type="hidden" value="{{app._id}}">
+                    <div class="stars">
+                        <div class="comment">
+                            <textarea name="comment" id="comment" cols="90" rows="5"></textarea>
+                        </div>
+                        <input class="star star-5" id="star-5" type="radio" name="star5" value="5" />
+                        <label class="star star-5" for="star-5"></label>
+                        <input class="star star-4" id="star-4" type="radio" name="star4" value="4" />
+                        <label class="star star-4" for="star-4"></label>
+                        <input class="star star-3" id="star-3" type="radio" name="star3" value="3" />
+                        <label class="star star-3" for="star-3"></label>
+                        <input class="star star-2" id="star-2" type="radio" name="star2" value="2" />
+                        <label class="star star-2" for="star-2"></label>
+                        <input class="star star-1" id="star-1" type="radio" name="star1" value="1" />
+                        <label class="star star-1" for="star-1"></label>
+                    </div>
+                    <div class="btn-feedback">
+                        <button form="form-feedback" type="submit">Đăng tải</button>
+                    </div>
+                </form>
+            </div>
+            <div class="about row p-2 py-3  bg-white mt-4 shadow-sm">
+                <h4 class="fw-semi fs-5">Bình luận</h4>
+                {{#each comments}}
+                <div class="row m-0 reviewrow p-3 px-0 border-bottom">
+                    <div class="col-md-12 align-items-center col-9 rcolm">
+                        <div class="review">
+                            <li class="col-8 ratfac">
+                                {{#compare this.ratings 1 operator="==="}}
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                {{else compare this.ratings 2 operator="==="}}
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                {{else compare this.ratings 3 operator="==="}}
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                {{else compare this.ratings 4 operator="==="}}
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                {{else}}
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                <i class="bi text-warning bi-star-fill"></i>
+                                {{/compare}}
+
+                            </li>
+                        </div>
+                        <h3 class="fs-6 fw-semi mt-2">{{this.userName}}
+
+                            <small class="float-end fw-normal"> {{this.date_time}} </small>
+                        </h3>
+
+                        <div class="review-text">
+                            {{this.content}}
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4 class="fs-6 fw-bolder my-3 mt-2 mb-3">Related Apps</h4>
+            {{#each related}}
+            <div class="col-md-12 mb-3">
+                <div class="app-cover p-2 shadow-md bg-white">
+                    <a href="/app/{{this._id}}">
+                        <div class="row">
+                            <div class="img-cover pe-0 col-3"> <img class="rounded"
+                                    src="/images/imgApps/{{this.image}}" alt=""></div>
+                            <div class="det mt-2 col-9">
+                                <h5 class="mb-0 fs-6">{{this.nameApp}}</h5>
+                                {{#compare this.category "A" operator="==="}}
+                                <span class="fs-8">Applications</span>
+                                {{else compare this.category "G" operator="==="}}
+                                <span class="fs-8">Games</span>
+                                {{else}}
+                                <span class="fs-8">Books</span>
+                                {{/compare}}
+                                <ul class="row">
+                                    <li class="col-8 ratfac">
+                                        {{#compare this.rating 1 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 2 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 3 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 4 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        {{/compare}}
+                                    </li>
+                                    <li class="col-4"><span class="text-success float-end">Free</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+<!-- Thông báo -->
+<div id="success-modal" class="modal-success">
+    <div class="modal-content-success">
+        <h2>Thông báo</h2>
+        <p id="message">
+    </div>
+</div>
+
+
+<script src="/js/detailApp.js"></script>

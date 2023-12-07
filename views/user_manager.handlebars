@@ -1,0 +1,88 @@
+<table class="table table-responsive table-hover">
+    <thead>
+        <tr>
+            <th >Username</th>
+            <th >Email</th>
+            <th >Created At</th>
+            <th >Status</th>
+            <th >Actions</th>
+        </tr>
+    </thead>
+    <tbody id="filesTable">
+        {{#each users}}
+        <tr>
+            <td id="app">
+                {{this.username}}
+            </td>
+            <td>
+               {{this.email}}
+            </td>
+            <td>
+                {{formatTime this.createdAt}}
+            </td>
+            <td>
+                {{this.status}}
+            </td>
+            <td>
+                <a id = "edit" class="link edit"><i class="fa-sharp fa-solid fa-pen-to-square fa-lg"></i></a>&nbsp;
+                <a class="link block">
+                    {{#if this.status}}
+                    <i class="fa-sharp fa-solid fa-unlock fa-lg"></i>
+                    {{else}}
+                    <i class="fa-sharp fa-solid fa-lock fa-lg"></i>
+                    {{/if}}
+                </a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+{{!-- EDIT MODAL --}}
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                <input value = "" type="text" style="display:none" id="originalName" name="originalName" />
+
+                <div class="form-group mb-3">
+                    <label class="form-label" for="name">Username</label>
+                    <input type="text" class="form-control" id="name" name="name" />
+                </div>
+
+                <div class="form-group ">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" />
+                </div>
+
+
+                <div id="alert" class="hidden mt-3" style="color:#DC0000">
+                        
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="editBtn" onclick="saveChanges()" type="button" class="btn">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- toast --}}
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<script src="/admin/js/userControl.js"></script>

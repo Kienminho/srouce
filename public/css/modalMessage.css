@@ -1,0 +1,41 @@
+/* CSS code */
+.modal-success {
+    position: fixed;
+    width: 600px;
+    height: 130px;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.modal-content-success {
+    padding: 16px;
+    text-align: center;
+    background-color: rgb(250, 250, 250);
+    /* tạo nền đen mờ với độ trong suốt là 50% */
+
+
+}
+
+.modal-content-success h2 {
+    margin-top: 0;
+    color: black;
+}
+
+.modal-content-success p {
+    margin: 8px 0;
+    color: black;
+}
+
+/* Hide the modal by default */
+#success-modal {
+    display: none;
+}
+
+#countdown {
+    color: red;
+}

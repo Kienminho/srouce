@@ -1,0 +1,46 @@
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal h2 {
+    text-align: center;
+    margin-top: 0;
+    color: #333;
+}
+
+.modal #message {
+    margin: 10px 0;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+#success-modal {
+    display: none;
+}
+
+#countdown {
+    color: red;
+}
+
+
+.new-password {
+    display: none;
+}
+
+.btn-change-password {
+    display: none;
+}

@@ -1,0 +1,110 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0px auto;
+            padding-top: 100px;
+        }
+
+        .container .title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        canvas {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>test vẽ thống kê</h1>
+    <div class="container">
+        <div class="title">Chart test</div>
+        <canvas id="canvas"></canvas>
+    </div>
+</body>
+
+<script>
+    fetch("/getStatistics")
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(11111)
+            chart(sort(data.data))
+            //char(sort(data.data));
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+    let labels = [];
+    let webViews = [];
+    let appDownloads = [];
+    function chart(array) {
+
+        array.forEach((item) => {
+            labels.push(item.date);
+            webViews.push(item.webViews);
+            appDownloads.push(item.appDownloads);
+        });
+    }
+
+    //vẽ biểu đồ 
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                label: "Số lượng download",
+                backgroundColor: "blue",
+                borderColor: "blue",
+                data: appDownloads
+            },
+            {
+                label: "Số lượng truy cập",
+                backgroundColor: "red",
+                borderColor: "red",
+                data: webViews
+
+            }
+        ]
+    }
+
+    const config = {
+        type: "line",
+        data: data
+    }
+
+    const canvas = document.getElementById("canvas");
+    const charts = new Chart(canvas, config)
+
+    function sort(arr) {
+        arr.sort((a, b) => {
+            const dateA = Date.parse(a.date.split('/').reverse().join('/'));
+            const dateB = Date.parse(b.date.split('/').reverse().join('/'));
+            return dateA - dateB;
+        });
+        return arr
+    }
+</script>
+
+</html>

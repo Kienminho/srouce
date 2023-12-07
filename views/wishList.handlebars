@@ -1,0 +1,101 @@
+<div class="section-container p-2 p-xl-4">
+
+    <h4 class="fs-10 fw-bolder my-3 mt-2 mb-4">Danh sách yêu thích</h4>
+    <div class="row m-0">
+        <div class="row">
+            {{#each wishList}}
+            <div class="col-md-6 mb-3" id="app-{{this._id}}">
+                <div class="app-cover p-2 shadow-md bg-white">
+                    <a href="/app/{{this._id}}">
+                        <div class="row">
+                            <div class="img-cover pe-0 col-3"> <img class="rounded"
+                                    src="/images/imgApps/{{this.image}}" alt=""></div>
+                            <div class="det mt-2 col-9">
+                                <h5 class="mb-0 fs-6">{{this.nameApp}}</h5>
+                                {{#compare this.category "A" operator="==="}}
+                                <span class="fs-8">Applications</span>
+                                {{else compare this.category "G" operator="==="}}
+                                <span class="fs-8">Games</span>
+                                {{else}}
+                                <span class="fs-8">Books</span>
+                                {{/compare}}
+                                <ul class="row">
+                                    <li class="col-8 ratfac">
+                                        {{#compare this.rating 1 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 2 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 3 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else compare this.rating 4 operator="==="}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi bi-star-fill"></i>
+                                        {{else}}
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        <i class="bi text-warning bi-star-fill"></i>
+                                        {{/compare}}
+                                    </li>
+                                    <li class="col-4"><span class="delete text-success float-end"
+                                            data-id="{{this._id}}"><i class="fa-solid fa-ellipsis fa-xl"></i></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+
+<!-- Thông báo -->
+<div id="success-modal" class="modal">
+    <div class="modal-content">
+        <h2>Thông báo</h2>
+        <p id="message">
+    </div>
+</div>
+
+<!-- Delete dialog -->
+<div class="modal fade" id="confirm-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Xóa tập tin</h4>
+            </div>
+
+            <div class="modal-body">
+                Bạn có chắc rằng muốn xóa <strong class="app-delete"></strong>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-delete" data-dismiss="modal">Xóa</button>
+                <button type="button" onclick="hideModal()" class="btn btn-secondary"
+                    data-dismiss="modal">Không</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/wishList.js"></script>

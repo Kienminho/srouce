@@ -1,0 +1,97 @@
+<style>
+    .block:hover {
+        color: #DC0000
+    }
+</style>
+
+<h4>{{app.nameApp}}</h4>
+<p>{{app.idApp}}</p>
+<p id="_idApp" style="display: none;">{{app._id}}</p>
+
+<button class="btn btn-primary mb-3" id="addCommentBtn">Add Comment</button>
+<table class="table table-responsive table-hover">
+    <thead>
+        <tr>
+            <th style="display: none;">id</th>
+            <th>Username</th>
+            <th>Created At</th>
+            <th width="600">Content</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="filesTable">
+        {{#each comments}}
+        <tr>
+            <td id="idCmt" style="display: none;">
+                {{this._id}}
+            </td>
+            <td>
+                {{this.userName}}
+            </td>
+            <td>
+                {{this.date_time}}
+            </td>
+            <td>
+                {{this.content}}
+            </td>
+            <td>
+                <a id="block" class="link block"><i class="fa-solid fa-trash fa-lg"></i></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{!-- toast --}}
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="commentModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add a comment</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                <input type="text" style="display:none" name="_id" id="_id" value="">
+
+                <input type="text" hidden name="category" id="category">
+
+
+
+                <select name="rating" id="rating" class="form-select mb-3" aria-label="Default select example">
+                    <option value="">Select a rating</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <div class="form-group mb-3">
+                    <label class="form-label" for="content">Description</label>
+                    <textarea name="content" rows="5" id="content" class="form-control"></textarea>
+                </div>
+
+                <div id="alert" class="hidden mt-3" style="color:#DC0000"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="submitBtn" onclick="addComment()" type="button" class="btn btn-primary">Save
+                    changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/admin/js/commentControl.js"></script>

@@ -1,0 +1,47 @@
+<table class="table  table-responsive table-hover">
+    <thead>
+        <tr>
+            <th width="150">Name</th>
+            <th width="150">Image</th>
+            <th width="100">Category</th>
+            <th>Description</th>
+            <th>Uploaded by</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="filesTable">
+        {{#each apps}}
+        <tr>
+            <td id="app">
+                {{this.nameApp}}
+            </td>
+            <td>
+               <img loading="lazy" src="{{modifyImg this.image}}" class="img-fluid float-start rounded mx-auto d-block" alt="..." width="75" height="auto">
+            </td>
+            <td >
+                {{this.category}}
+                
+            </td>
+            <td>
+                {{this.description}}
+            </td>
+            <td>
+                {{this.uploadBy}}
+            </td>
+            <td>
+                <input onclick="acceptUpload(`{{this.idApp}}`)" class="btn btn-primary" type="button" value="Accept">
+                <input onclick="refuseUpload(`{{this.idApp}}`)" class="btn btn-danger" type="button" value="Reject">
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<div class="form-group container-progress" style="display:block; text-align: center; display: none">
+    <button class="btn btn-success" type="button">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Loading...
+    </button>
+</div>
+
+
+<script src="/admin/js/upload.js"></script>
